@@ -17,11 +17,13 @@
       services.openssh = {
         enable = true;
         settings = {
-          PermitRootLogin = "prohibit-password";
+          PermitRootLogin = "no";
           PasswordAuthentication = false;
           KbdInteractiveAuthentication = false;
         };
       };
+
+      security.sudo.wheelNeedsPassword = true;
 
       # mDNS so `athena.local` resolves on the LAN.
       services.avahi = {
@@ -34,15 +36,8 @@
         };
       };
 
-      security.sudo.wheelNeedsPassword = false;
+
       users.mutableUsers = false;
-      users.users.root.openssh.authorizedKeys.keys = authorizedKeys;
-      users.users.isaac = {
-        isNormalUser = true;
-        extraGroups = [ "wheel" ];
-        shell = pkgs.zsh;
-        openssh.authorizedKeys.keys = authorizedKeys;
-      };
 
       programs.zsh.enable = true;
 
@@ -56,7 +51,7 @@
       ];
 
       users.motd = ''
-        Hello from NixOS on Raspberry Pi!
+        Hello from NixOS on Raspberry Pi 5!
       '';
 
       nix.settings.experimental-features = [

@@ -10,7 +10,7 @@
         self.nixosModules.base
         self.nixosModules.networking
         self.nixosModules.home
-
+        self.nixosModules.isaac
       ];
     };
 }
